@@ -1,1 +1,21 @@
-#
+<?xml version="1.0"?>
+<package format="3">
+  <name>voicevox_ros2</name>
+  <version>0.0.1</version>
+  <description>VOICEVOX TTS node playing audio from memory buffer</description>
+
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <!-- pip で入れているが、メタ情報として依存を宣言 -->
+  <exec_depend>voicevox_core</exec_depend>
+  <exec_depend>numpy</exec_depend>
+  <exec_depend>sounddevice</exec_depend>
+
+</package>
