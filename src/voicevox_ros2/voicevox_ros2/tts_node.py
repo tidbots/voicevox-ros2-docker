@@ -1,4 +1,4 @@
-# voicevox_talker/voicevox_talker.py
+# voicevox_ros2/voicevox_ros2.py
 
 import os
 import io
