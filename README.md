@@ -32,7 +32,7 @@ git clone https://github.com/okadahiroyuki/voicevox_ros2_docker.git
 
 ## 起動
 ```
-cd ~/docker/voicevox_ros2
+cd ~/docker/voicevox_ros2_docker
 docker compose up
 ```
 ```
@@ -42,18 +42,14 @@ docker run --rm -it --device /dev/snd voicevox_ros2:latest
 ## 動作確認
 コンテナ内で /tts_text に発話したい文字列を publishする
 
+別のターミナルで
 ```
-cd ~/docker/voicevox_ros2
+cd ~/docker/voicevox_ros2_docker
 docker compose exec voicevox_ros2 bash
 ```
-```
 
-```
 コンテナ内で
 ```
-source /opt/ros/jazzy/setup.bash
-source /ros2_voicevox_ws/install/setup.bash
-
 ros2 topic pub /tts_text std_msgs/msg/String "data: '[1] おはようございます'" -1
 ros2 topic pub /tts_text std_msgs/msg/String "data: '[8] 別の話者でしゃべります'" -1
 ros2 topic pub /tts_text std_msgs/msg/String "data: 'デフォルト話者です'" -1
