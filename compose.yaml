@@ -5,6 +5,7 @@ services:
     container_name: voicevox_ros2
     devices:
       - "/dev/snd:/dev/snd"
+    network_mode: host
     environment:
       - VOICEVOX_ENGINE_DIR=/voicevox_engine
     stdin_open: true
