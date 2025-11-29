@@ -3,23 +3,16 @@
 ## 動作環境
 - ホストのOS: Ubuntu 24.04
 - Docker
+
 - ROS2: Jazzy すでにインストール済み（rclpy は apt のものを使う）
 - Python パッケージ管理: uv
 - TTSエンジン:VOICEVOX CORE 0.16.x 系 (Python wheel + engine一式)
-
-hhhh
-hhhh
 
 ## 構成
 ```
 voicevox_ros2_docker/
  ├─ Dockerfile
  ├─ entrypoint.sh
- ├─ voicevox_core-0.16.0-cp310-abi3-manylinux_2_34_x86_64.whl
- ├─ voicevox_engine/
- │   ├─ onnxruntime/
- │   ├─ dict/
- │   └─ models/vvms/
  └─ ros2_voicevox_ws/
      └─ src/
          └─ voicevox_ros2/
@@ -32,7 +25,8 @@ voicevox_ros2_docker/
 
 ## インストール
 ```
-cd ~/docker git clone
+cd ~/docker
+git clone https://github.com/okadahiroyuki/voicevox_ros2_docker.git
 ```
 
 
