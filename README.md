@@ -18,7 +18,7 @@ VOICEVOX COREを使用したROS2 Text-to-Speech（TTS）システムです。
 ## ディレクトリ構成
 
 ```
-voicevox_ros2_docker/
+voicevox-ros2-docker/
 ├── compose.yaml              # Docker Compose 設定
 ├── Dockerfile                # コンテナビルド定義
 ├── entrypoint.sh             # コンテナ起動スクリプト
@@ -48,8 +48,8 @@ voicevox_ros2_docker/
 ## インストール
 
 ```bash
-git clone https://github.com/okadahiroyuki/voicevox_ros2_docker.git
-cd voicevox_ros2_docker
+git clone https://github.com/okadahiroyuki/voicevox-ros2-docker.git
+cd voicevox-ros2-docker
 ```
 
 ### VOICEVOX Core のダウンロード

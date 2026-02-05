@@ -18,7 +18,7 @@ Provides Japanese speech synthesis with multiple speakers and styles in a Docker
 ## Directory Structure
 
 ```
-voicevox_ros2_docker/
+voicevox-ros2-docker/
 ├── compose.yaml              # Docker Compose configuration
 ├── Dockerfile                # Container build definition
 ├── entrypoint.sh             # Container startup script
@@ -46,8 +46,8 @@ voicevox_ros2_docker/
 ## Installation
 
 ```bash
-git clone https://github.com/okadahiroyuki/voicevox_ros2_docker.git
-cd voicevox_ros2_docker
+git clone https://github.com/okadahiroyuki/voicevox-ros2-docker.git
+cd voicevox-ros2-docker
 ```
 
 ### Download VOICEVOX Core
