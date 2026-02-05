@@ -19,10 +19,10 @@ VOICEVOX COREを使用したROS2 Text-to-Speech（TTS）システムです。
 
 ```
 voicevox_ros2_docker/
-├── .gh_token                 # GitHub Token（VOICEVOX ダウンロード用）
 ├── compose.yaml              # Docker Compose 設定
 ├── Dockerfile                # コンテナビルド定義
 ├── entrypoint.sh             # コンテナ起動スクリプト
+├── voicevox_core/            # VOICEVOX Core ファイル（要ダウンロード）
 ├── README.md                 # 日本語ドキュメント
 ├── README-e.md               # English documentation
 ├── CLAUDE.md                 # Claude Code 用ガイド
@@ -50,14 +50,25 @@ git clone https://github.com/okadahiroyuki/voicevox_ros2_docker.git
 cd voicevox_ros2_docker
 ```
 
-### GitHub Token の設定
+### VOICEVOX Core のダウンロード
 
-VOICEVOXのダウンロードにGitHub Tokenが必要です。
-`.gh_token` ファイルにトークンを記載してください。
+ビルド前に VOICEVOX Core ファイルをダウンロードする必要があります。
 
 ```bash
-echo "your_github_token" > .gh_token
+# ダウンローダを取得（ネットワーク経由）
+curl -fsSL "https://github.com/VOICEVOX/voicevox_core/releases/download/0.16.2/download-linux-x64" -o download-linux-x64
+chmod +x download-linux-x64
+
+# VOICEVOX Core をダウンロード（voicevox_core ディレクトリに保存）
+./download-linux-x64 --output voicevox_core
 ```
+
+> **Note:** ダウンローダ（`download-linux-x64`）が既にある場合は、そのまま使用できます。
+
+ダウンロード後、`voicevox_core/` ディレクトリに以下が含まれます：
+- `onnxruntime/` - ONNX Runtime ライブラリ
+- `dict/open_jtalk_dic_utf_8-1.11/` - OpenJTalk 辞書
+- `models/vvms/` - 音声モデルファイル（.vvm）
 
 ## ビルド・起動
 

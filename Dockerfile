@@ -47,23 +47,12 @@ RUN uv pip install --upgrade pip && \
     uv pip install \
       "https://github.com/VOICEVOX/voicevox_core/releases/download/${VV_CORE_VERSION}/voicevox_core-${VV_CORE_VERSION}-cp310-abi3-${VV_CORE_OS_TAG}.whl"
 
-# VOICEVOX Core のダウンローダでエンジン用ディレクトリを構築
+# VOICEVOX Core のエンジン用ディレクトリを構築（事前ダウンロード済みファイルを使用）
 # /voicevox_engine の中に:
 #   - onnxruntime/
 #   - dict/open_jtalk_dic_utf_8-1.11
 #   - models 内に 0.vvm (など)
-RUN --mount=type=secret,id=gh_token \
-    mkdir -p /voicevox_engine && \
-    cd /voicevox_engine && \
-    curl -fsSL "https://github.com/VOICEVOX/voicevox_core/releases/download/${VV_CORE_VERSION}/download-linux-x64" -o download && \
-    chmod +x download && \
-    export GITHUB_TOKEN="$(cat /run/secrets/gh_token)" && \
-    export GH_TOKEN="$GITHUB_TOKEN" && \
-    echo y | ./download \
-      --devices cpu \
-      --os linux \
-      --cpu-arch x64 \
-      --models-pattern 0.vvm
+COPY voicevox_core /voicevox_engine
 
 # ROS2 パッケージをビルド
 RUN . /opt/ros/jazzy/setup.sh && \

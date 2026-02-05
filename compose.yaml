@@ -5,8 +5,7 @@ services:
       - 8.8.8.8
     build:
       context: .
-      secrets:
-        - gh_token
+      network: host
     container_name: voicevox_ros2
     devices:
       - "/dev/snd:/dev/snd"
@@ -23,6 +22,3 @@ services:
                   -p engine_dir:=/voicevox_engine
                   -p vvm_file:=0.vvm
                   -p style_id:=0"
-secrets:
-  gh_token:
-    file: .gh_token

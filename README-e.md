@@ -19,10 +19,10 @@ Provides Japanese speech synthesis with multiple speakers and styles in a Docker
 
 ```
 voicevox_ros2_docker/
-├── .gh_token                 # GitHub Token (for VOICEVOX download)
 ├── compose.yaml              # Docker Compose configuration
 ├── Dockerfile                # Container build definition
 ├── entrypoint.sh             # Container startup script
+├── voicevox_core/            # VOICEVOX Core files (download required)
 ├── README.md                 # Japanese documentation
 ├── README-e.md               # English documentation
 ├── CLAUDE.md                 # Claude Code guide
@@ -50,14 +50,25 @@ git clone https://github.com/okadahiroyuki/voicevox_ros2_docker.git
 cd voicevox_ros2_docker
 ```
 
-### GitHub Token Setup
+### Download VOICEVOX Core
 
-A GitHub Token is required to download VOICEVOX.
-Create a `.gh_token` file with your token:
+Before building, you need to download VOICEVOX Core files.
 
 ```bash
-echo "your_github_token" > .gh_token
+# Get the downloader (via network)
+curl -fsSL "https://github.com/VOICEVOX/voicevox_core/releases/download/0.16.2/download-linux-x64" -o download-linux-x64
+chmod +x download-linux-x64
+
+# Download VOICEVOX Core (saves to voicevox_core directory)
+./download-linux-x64 --output voicevox_core
 ```
+
+> **Note:** If you already have the downloader (`download-linux-x64`), you can use it directly.
+
+After download, the `voicevox_core/` directory contains:
+- `onnxruntime/` - ONNX Runtime library
+- `dict/open_jtalk_dic_utf_8-1.11/` - OpenJTalk dictionary
+- `models/vvms/` - Voice model files (.vvm)
 
 ## Build & Run
 

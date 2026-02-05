@@ -71,7 +71,7 @@ colcon test-result --verbose
 
 3. **System Site-Packages:** Python venv uses `--system-site-packages` to access ROS2's system-installed rclpy.
 
-4. **GitHub Token:** `.gh_token` file contains token for downloading VOICEVOX releases from GitHub (required for Docker build).
+4. **Pre-downloaded VOICEVOX Core:** The `voicevox_core/` directory must be downloaded before building. Use the VOICEVOX downloader to obtain required files.
 
 ## Publishing Text for TTS
 
