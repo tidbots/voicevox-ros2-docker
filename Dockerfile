@@ -52,12 +52,13 @@ RUN uv pip install --upgrade pip && \
 #   - onnxruntime/
 #   - dict/open_jtalk_dic_utf_8-1.11
 #   - models 内に 0.vvm (など)
-RUN mkdir -p /voicevox_engine && \
+RUN --mount=type=secret,id=gh_token \
+    mkdir -p /voicevox_engine && \
     cd /voicevox_engine && \
-    curl -fsSL "https://github.com/VOICEVOX/voicevox_core/releases/download/${VV_CORE_VERSION}/download-linux-x64" \
-      -o download && \
+    curl -fsSL "https://github.com/VOICEVOX/voicevox_core/releases/download/${VV_CORE_VERSION}/download-linux-x64" -o download && \
     chmod +x download && \
-    # ライセンスに自動同意しつつ、CPU 用／Linux x64／0.vvm だけをダウンロード
+    export GITHUB_TOKEN="$(cat /run/secrets/gh_token)" && \
+    export GH_TOKEN="$GITHUB_TOKEN" && \
     echo y | ./download \
       --devices cpu \
       --os linux \
